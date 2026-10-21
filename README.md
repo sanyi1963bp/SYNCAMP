@@ -79,6 +79,12 @@ A szinkron lényege az `engine.Player.heard()`: a PortAudio minden hangblokknál
 mikor ér a blokk a hangszóróhoz (`outputBufferDacTime`). Ebből a pillanatnyi órával
 visszaszámolható, melyik minta szól éppen. Minden látvány ezt kérdezi le rajzolás előtt.
 
+## Licenc
+
+A SYNCAMP saját kódja **MIT licencű** (lásd [LICENSE](LICENSE)): szabadon használható,
+módosítható és továbbadható, a szerzői jogi megjegyzés megtartásával.
+A mellékelt külső összetevők a saját licencük alá tartoznak (lásd lent).
+
 ## Felhasznált programok és licencek
 
 - **projectM 4.1.8** (LGPL-2.1): `milkdrop/projectM-4.dll`, licenc: `milkdrop/projectM-LICENSE.txt`.
