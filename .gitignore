@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+
+# letöltött látványcsomag (setup_milkdrop.py) és a program által generált fájlok
+milkdrop/presets/
+milkdrop/textures/
+milkdrop/special/

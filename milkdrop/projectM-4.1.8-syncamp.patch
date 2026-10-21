@@ -1,0 +1,33 @@
+--- a/src/libprojectM/ProjectM.cpp
++++ b/src/libprojectM/ProjectM.cpp
+@@ -98,6 +98,11 @@
+         return;
+     }
+ 
++    // SYNCAMP patch: remember the caller's framebuffer (e.g. a QOpenGLWidget FBO)
++    // so the final image goes there instead of the window's default framebuffer.
++    GLint targetFramebuffer = 0;
++    glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &targetFramebuffer);
++
+     // Update FPS and other timer values.
+     m_timeKeeper->UpdateTimers();
+ 
+@@ -167,7 +172,7 @@
+     m_activePreset->RenderFrame(audioData, renderContext);
+ 
+     // ToDo: Allow external apps to provide a custom target framebuffer.
+-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
++    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, static_cast<GLuint>(targetFramebuffer));
+     glViewport(0, 0, renderContext.viewportSizeX, renderContext.viewportSizeY);
+ 
+ #ifdef USE_GLES
+--- a/src/libprojectM/Renderer/TextureManager.cpp
++++ b/src/libprojectM/Renderer/TextureManager.cpp
+@@ -9,6 +9,7 @@
+ #include <SOIL2/SOIL2.h>
+ 
+ #include <algorithm>
++#include <iterator>
+ #include <memory>
+ #include <random>
+ #include <vector>
